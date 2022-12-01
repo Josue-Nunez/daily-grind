@@ -38,7 +38,7 @@
            font-style:italic; /* make the slogan italics */ 
         }
     </style>
-   
+
     <!--[if ltIE9]>
        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
      <![endif]-->
@@ -59,11 +59,26 @@
 	</header>
     <main>
 		 <header><h3 class="slogan">You drink our coffee, we make large bucks!</h3></header>
-        <p>
+
+		 <div id="coffee-template"> </div>
+       <!--
+		 <p>
     		 <img src="images/pumpkin-spice-latte.jpg" alt="Our Pumpkin Spice Latte tastes great on a Fall Day!" id="coffee" />
-            <strong class="feature">Monday's Coffee Special:</strong> Monday's daily coffee special is <strong class="feature">Pumpkin Spice Latte</strong>, which makes us wish it was always Fall, as this is one of our top sellers!</p>
-        <p><span class="feature">Pumpkin Spice is </span> Gluten-free selfies normcore chillwave. Listicle 90's chambray, seitan cold-pressed try-hard Etsy authentic flexitarian vinyl. Meditation bespoke freegan, single-origin coffee cred seitan 90's gentrify brunch Williamsburg squid cold-pressed. Brooklyn readymade Tumblr wayfarers ethical.</p>
-        <p><span class="feature">Enjoy Pumpkin Spice with our </span> Polaroid iPhone plaid, Pitchfork Shoreditch paleo. Hashtag keytar chia scenester Pinterest, semiotics tousled food truck. YOLO scenester deep v, taxidermy paleo quinoa McSweeney's Carles VHS mustache Williamsburg gluten-free readymade cold-pressed. Truffaut Thundercats Schlitz, listicle organic Brooklyn paleo squid asymmetrical readymade migas gluten-free Austin.</p>
+            <strong>Monday's Coffee Special:</strong> Monday's daily coffee special is <strong >Pumpkin Spice Latte</strong>, which makes us wish it was always Fall, as this is one of our top sellers!</p>
+        -->
+
+		<h3>Click below to see specials for other days</h3>
+		<p><a href="?day=0" >Sunday</a></p>
+		<p><a href="?day=1" >Monday</a></p>
+		<p><a href="?day=2" >Tuesday</a></p>
+		<p><a href="?day=3" >Wednesday</a></p>
+		<p><a href="?day=4" >Thursday</a></p>
+		<p><a href="?day=5" >Friday</a></p>
+		<p><a href="?day=6" >Saturday</a></p>
+
+
+
+			
 		 <p>
 		 <b>At LargeBuck$ we aspire to: </b>Aesthetic gentrify YOLO McSweeney's typewriter single-origin coffee. Slow-carb hella listicle lomo, Helvetica single-origin coffee butcher stumptown. Chambray try-hard church-key mumblecore, tote bag PBR cardigan. Retro Austin Brooklyn, blog Intelligentsia gentrify jean shorts sartorial bicycle rights gastropub. Aesthetic wayfarers Pitchfork, tattooed Carles quinoa meh leggings distillery pork belly banjo. Umami cred lumbersexual skateboard, pork belly Tumblr vegan letterpress. Fixie bicycle rights butcher chillwave, gluten-free health goth Echo Park locavore whatever.
 
@@ -87,6 +102,150 @@
 	  </footer>
     <!-- END Footer -->
 	<script>
+
+		/*Rotate by Day of Week: Use HTML/CSS & JavaScript to create a single page that rotates unique colors and content for each weekday (Sunday to Saturday) into the page.  The content must include:
+
+One unique image, with appropriate and matching content in the alt tag.  
+A paragraph or two of content that describes the daily item (paragraph must include the name of the highlighted weekday)
+A unique color that supports the image and paragraph of content
+The unique color could affect the background HTML, or an element on the page for each day of the week.  All of the above must occur within one page. */
+
+
+
+
+
+let myDate = new Date();
+let today = myDate.getDate;
+let coffee = ""
+
+
+
+//use location object to access querystring (address bar)
+const queryString = window.location.search;
+    
+//output to console    
+console.log(queryString);
+    
+//separate querystring parameters
+const urlParams = new URLSearchParams(queryString);
+
+if(urlParams.has("day")){//from querystring
+    today = urlParams.get("day");
+ }
+ 
+today = parseInt(today);
+
+function coffeeTemplate(coffee)
+{
+    return `<p> 
+                <img src="images/${coffee.pic}" alt="${coffee.alt}" id="coffee" />
+                <strong${coffee.day}'s Coffee Special:</strong> ${coffee.day}'s daily coffee special is <strong >${coffee.name}</strong>,${coffee.desc}
+            </p>`;
+}
+
+switch (today)
+{
+    case 1:
+        today = "Monday"
+        coffee = 
+        {
+            color:"pink",
+            name:"Bubble Tea",
+            pic:"bubble-tea.jpg",
+            alt:"A picture of a Bubble Tea",
+            day:"Monday",
+            desc:`I like me some bubble tea!`
+        }
+    break;
+
+    case 2:
+        today = "Tuesday"
+        coffee = 
+        {
+            color:"brown",
+            name:"Caramel Latte",
+            pic:"caramel-latte.jpg",
+            alt:"A picture of a caramel latte",
+            day:"Tuesday",
+            desc:`Its cold, so a caramel latte sounds good right now`
+        }
+    break;
+
+    case 3:
+        today = "Wednesday"
+        coffee = 
+        {
+            color:"black",
+            name:"Cold Brew",
+            pic:"cold-brew.jpg",
+            alt:"A picture of a cold brew",
+            day:"Wednesday",
+            desc:`I need some serious caffiene , give me a cold brew`
+        }
+    break;
+
+    case 4:
+        today = "Thursday"
+        coffee = 
+        {
+            color:"gray",
+            name:"Drip",
+            pic:"cold-brew.jpg",
+            alt:"A picture of drip coffee",
+            day:"Thursday",
+            desc:`Nothing beats good ol' drip coffee`
+        }
+    break;
+
+    case 5:
+        today = "Friday"
+        coffee = 
+        {
+            color:"green",
+            name:"Frappaccino",
+            pic:"frappaccino.jpg",
+            alt:"A picture of a frappaccino",
+            day:"Friday",
+            desc:`I could use a tasty frappaccino`
+        }
+    break;
+
+    case 6:
+        today = "Saturday"
+        coffee = 
+        {
+            color:"gold",
+            name:"Mocha",
+            pic:"mocha.jpg",
+            alt:"A picture of a mocha latte",
+            day:"Saturday",
+            desc:`Have a lil mocha to soothe your soul`
+        }
+    break;
+
+    case 0:
+        today = "Sunday"
+        coffee = 
+        {
+            color:"orange",
+            name:"Pumpkin Spice Latte",
+            pic:"pumpkin-spice-latte.jpg",
+            alt:"A picture of a pumpkin spice latte",
+            day:"Sunday",
+            desc:`Brighten up your day with our famous pumpkin latte`
+        }
+    break;
+
+    default:
+        alert("something went wrong");
+}
+
+console.log(coffee);
+	
+		document.getElementById("coffee-template").innerHTML = coffeeTemplate(coffee);
+
+		document.querySelector("html").style.backgroundColor = coffee.color;
+	
 		//https://tinyurl.com/dynamic-html-checker
 		document.getElementById("html-checker").setAttribute("href","https://validator.w3.org/nu/?doc=" + location.href);
 		
