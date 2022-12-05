@@ -111,11 +111,18 @@ A unique color that supports the image and paragraph of content
 The unique color could affect the background HTML, or an element on the page for each day of the week.  All of the above must occur within one page. */
 
 
+function coffeeTemplate(coffee)
+{
+    return `<p> 
+                <img src="images/${coffee.pic}" alt="${coffee.alt}" id="coffee" />
+                <strong${coffee.day}'s Coffee Special:</strong> ${coffee.day}'s daily coffee special is <strong >${coffee.name}</strong>,${coffee.desc}
+            </p>`;
+}
 
 
 
 let myDate = new Date();
-let today = myDate.getDate;
+let today = myDate.getDate();
 let coffee = ""
 
 
@@ -135,13 +142,6 @@ if(urlParams.has("day")){//from querystring
  
 today = parseInt(today);
 
-function coffeeTemplate(coffee)
-{
-    return `<p> 
-                <img src="images/${coffee.pic}" alt="${coffee.alt}" id="coffee" />
-                <strong${coffee.day}'s Coffee Special:</strong> ${coffee.day}'s daily coffee special is <strong >${coffee.name}</strong>,${coffee.desc}
-            </p>`;
-}
 
 switch (today)
 {
@@ -190,7 +190,7 @@ switch (today)
         {
             color:"gray",
             name:"Drip",
-            pic:"cold-brew.jpg",
+            pic:"drip.jpg",
             alt:"A picture of drip coffee",
             day:"Thursday",
             desc:`Nothing beats good ol' drip coffee`
